@@ -1,10 +1,10 @@
 === Simple Optimizer ===
 Name: Simple Optimizer
 Contributors: MyWebsiteAdvisor, ChrisHurst
-Tags: Optimize, Compress, Maintenance, Repair
+Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 2.9
 Tested up to: 3.4.2
-Stable tag: 1.0
+Stable tag: 1.1
 
 Check, Repair and Optimize WordPress Database. Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
 
@@ -77,4 +77,8 @@ If we choose your testimonial or website we can link to your site and generate s
 
 = 1.0 =
 * Initial release
+
+= 1.1 =
+* Added advanced optimization functions
+* Added contextual help menu
 

@@ -42,6 +42,9 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 			
 			// push options page link, when generating admin menu
 			add_action('admin_menu', array(&$this, 'adminMenu'));
+			
+			//add help menu
+			add_filter('contextual_help', array(&$this,'adminHelp'), 10, 3);
 	
 			
 		}
@@ -75,10 +78,48 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 	 */
 	public function adminMenu() {		
 		// add option in admin menu, for settings
-		$plugin_page = add_options_page('Simple Optimizer Plugin Options', 'Simple Optimizer', 8, __FILE__, array(&$this, 'optionsPage'));
+		global $simple_optimizer_admin_page;
+		$simple_optimizer_admin_page = add_options_page('Simple Optimizer Plugin Options', 'Simple Optimizer', 8, __FILE__, array(&$this, 'optionsPage'));
 
-		add_action('admin_print_styles-' . $plugin_page,     array(&$this, 'installStyles'));
+		add_action('admin_print_styles-' . $simple_optimizer_admin_page,     array(&$this, 'installStyles'));
 	}
+	
+	
+	
+	
+	public function adminHelp($contextual_help, $screen_id, $screen){
+	
+		global $simple_optimizer_admin_page;
+		
+		if ($screen_id == $simple_optimizer_admin_page) {
+			
+			$screen->add_help_tab(array(
+				'id' => 'plugin-support',
+				'title' => "Plugin Support",
+				'content' => "<h2>Support</h2><p>For Plugin Support please visit <a href='http://mywebsiteadvisor.com/support/' target='_blank'>MyWebsiteAdvisor.com</a></p>"
+			));
+			
+			$screen->add_help_tab(array(
+				'id' => 'plugin-upgrades',
+				'title' => "Plugin Upgrades",
+				'content' => "<h2>Plugin Upgrades</h2><p>We also offer a premium version of this pluign with extended features!<br>You can learn more about it here: <a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-optimizer/' target='_blank'>MyWebsiteAdvisor.com</a></p><p>Learn about all of our free plugins for WordPress here: <a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/' target='_blank'>MyWebsiteAdvisor.com</a></p>"
+			));
+			
+	
+			$screen->set_help_sidebar("<p>Please Visit us online for more Free WordPress Plugins!</p><p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/' target='_blank'>MyWebsiteAdvisor.com</a></p><br>");
+			//$contextual_help = 'HELP!';
+		}
+			
+		//return $contextual_help;
+
+	}		
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Include styles used by Simple Optimizer Plugin
@@ -125,7 +166,10 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 			'delete_unapproved_comments' => "DELETE FROM $wpdb->comments WHERE comment_approved = '0'",
 			'delete_revisions' => "DELETE FROM $wpdb->posts WHERE post_type = 'revision'",
 			'delete_auto_drafts' => "DELETE FROM $wpdb->posts WHERE post_status = 'auto-draft'",
-			'delete_transient_options' => "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%'"
+			'delete_transient_options' => "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%' OR option_name LIKE '_site_transient_%'",
+			'delete_unused_postmeta' => "DELETE pm FROM  $wpdb->postmeta  pm LEFT JOIN  $wpdb->posts  wp ON wp.ID = pm.post_id WHERE wp.ID IS NULL",
+			'delete_unused_tags' => "DELETE t,tt FROM  $wpdb->terms t INNER JOIN $wpdb->term_taxonomy tt ON t.term_id=tt.term_id WHERE tt.taxonomy='post_tag' AND tt.count=0",
+			'delete_pingbacks' => "DELETE FROM $wpdb->comments WHERE comment_type = 'pingback'"
 		);
 		
 		$plugin_options = $this->get_option('simple_optimizer_plugin'); 
@@ -400,8 +444,8 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 
 <?php $this->HtmlPrintBoxHeader('pl_resources',__('Plugin Resources','resources'),true); ?>
 
-	<p><a href='http://mywebsiteadvisor.com/wordpress-plugins/simple-optimizer/' target='_blank'>Plugin Homepage</a></p>
-	<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Plugin Support</a></p>
+	<p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-optimizer/' target='_blank'>Plugin Homepage</a></p>
+	<p><a href='http://mywebsiteadvisor.com/support/'  target='_blank'>Plugin Support</a></p>
 	<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Suggest a Feature</a></p>
 	<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Contact Us</a></p>
 	
@@ -426,7 +470,7 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 	
 	<p><a href='http://mywebsiteadvisor.com/tools/premium-wordpress-plugins/'  target='_blank'>Premium WordPress Plugins!</a></p>
 	<p><a href='http://profiles.wordpress.org/MyWebsiteAdvisor/'  target='_blank'>Free Plugins on Wordpress.org!</a></p>
-	<p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/'  target='_blank'>Free Plugins on Our Website!</a></p>	
+	<p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/'  target='_blank'>Free Plugins on MyWebsiteAdvisor.com!</a></p>	
 				
 <?php $this->HtmlPrintBoxFooter(true); ?>
 
@@ -459,8 +503,8 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 					<table width="100%" >
 					<tr valign="top">
 					<td>
-					<?php $this->HtmlPrintBoxHeader('wm_dir',__('Optimize WordPress','optimizer-settings'),false); ?>
-					<div style="height:250px;">
+					<?php $this->HtmlPrintBoxHeader('wm_dir',__('Basic WordPress Optimizations','optimizer-settings'),false); ?>
+					<div style="height:200px;">
 				
 						<?php global $wpdb; ?>
 						<?php $plugin_options = $this->get_option('simple_optimizer_plugin'); ?>
@@ -483,9 +527,34 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 						<p><input name='simple_optimizer_plugin[wp_optimization_methods][delete_auto_drafts]' type='checkbox' value='true' <?php echo $selected; ?> /> Delete Auto Drafts <br />
 						Currently <?php echo $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = 'auto-draft'"); ?> Drafts</p>
 						
+												
+			
+						
+					</div>
+					<?php $this->HtmlPrintBoxFooter(true); ?>
+					</td>
+					
+					
+										<td>
+					<?php $this->HtmlPrintBoxHeader('wm_dir',__('Advanced WordPress Optimizations','optimizer-settings'),false); ?>
+					<div style="height:200px;">
+				
+						
+						<?php $selected=($wp_optimization_methods['delete_unused_postmeta'] === 'true') ? "checked='checked'" : ""; ?>
+						<p><input name='simple_optimizer_plugin[wp_optimization_methods][delete_unused_postmeta]' type='checkbox' value='true' <?php echo $selected; ?> /> Delete Unused Post Meta<br />
+						Currently <?php echo $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta pm LEFT JOIN  $wpdb->posts  wp ON wp.ID = pm.post_id WHERE wp.ID IS NULL"); ?> Unused Post Meta Items</p>
+
+						<?php $selected=($wp_optimization_methods['delete_unused_tags'] === 'true') ? "checked='checked'" : ""; ?>
+						<p><input name='simple_optimizer_plugin[wp_optimization_methods][delete_unused_tags]' type='checkbox' value='true' <?php echo $selected; ?> /> Delete Unused Tags<br />
+						Currently <?php echo $wpdb->get_var("SELECT COUNT(*) FROM  $wpdb->terms t INNER JOIN $wpdb->term_taxonomy tt ON t.term_id=tt.term_id WHERE tt.taxonomy='post_tag' AND tt.count=0"); ?> Unsed Tags</p>
+
+						<?php $selected=($wp_optimization_methods['delete_pingbacks'] === 'true') ? "checked='checked'" : ""; ?>
+						<p><input name='simple_optimizer_plugin[wp_optimization_methods][delete_pingbacks]' type='checkbox' value='true' <?php echo $selected; ?> /> Delete Pingbacks <br />
+						Currently <?php echo $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_type = 'pingback'"); ?> Pingbacks</p>
+						
 						<?php $selected=($wp_optimization_methods['delete_transient_options'] === 'true') ? "checked='checked'" : ""; ?>
-						<p><input name='simple_optimizer_plugin[wp_optimization_methods][delete_transient_options]' type='checkbox' value='true' <?php echo $selected; ?> /> Delete Transient Options (Advanced)<br />
-						Currently <?php echo $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->options WHERE option_name LIKE '_transient_%'"); ?> Transient Options</p>
+						<p><input name='simple_optimizer_plugin[wp_optimization_methods][delete_transient_options]' type='checkbox' value='true' <?php echo $selected; ?> /> Delete Transient Options <br />
+						Currently <?php echo $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->options WHERE option_name LIKE '_transient_%' OR option_name LIKE '_site_transient_%'"); ?> Transient Options</p>
 						
 						
 						
@@ -493,9 +562,10 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 					</div>
 					<?php $this->HtmlPrintBoxFooter(true); ?>
 					</td>
+					
 					<td>
 					<?php $this->HtmlPrintBoxHeader('wm_dir',__('Optimize Database','optimizer-settings'),false); ?>
-					<div style="height:250px;">
+					<div style="height:200px;">
 					
 					
 						<p><b>Check Database</b></p>
