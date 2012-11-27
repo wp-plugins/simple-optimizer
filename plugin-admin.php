@@ -446,8 +446,8 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 
 	<p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-optimizer/' target='_blank'>Plugin Homepage</a></p>
 	<p><a href='http://mywebsiteadvisor.com/support/'  target='_blank'>Plugin Support</a></p>
-	<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Suggest a Feature</a></p>
 	<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Contact Us</a></p>
+	<p><a href='http://wordpress.org/support/view/plugin-reviews/simple-optimizer?rate=5'  target='_blank'>Rate and Review This Plugin</a></p>
 	
 <?php $this->HtmlPrintBoxFooter(true); ?>
 

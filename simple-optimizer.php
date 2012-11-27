@@ -6,7 +6,7 @@ class Simple_Optimizer {
 	 *
 	 * @var string
 	 */
-	public $version                 = '1.1';
+	public $version                 = '1.1.1';
 	
 	/**
 	 * Array with default options

@@ -4,7 +4,7 @@ Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 2.9
 Tested up to: 3.4.2
-Stable tag: 1.1
+Stable tag: 1.1.1
 
 Check, Repair and Optimize WordPress Database. Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
 
@@ -82,3 +82,6 @@ If we choose your testimonial or website we can link to your site and generate s
 * Added advanced optimization functions
 * Added contextual help menu
 
+= 1.1.1 =
+* Added link to rate and review this plugin on WordPress.org
+* resolved issue with out of place errors.
