@@ -32,7 +32,7 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 			
 		} else {
 			// register installer function
-			register_activation_hook(SO_LOADER, array(&$this, 'activateSimpleOptimizer'));
+			register_activation_hook(SO_LOADER, array(&$this, 'activate_simple_optimizer'));
 		
 			// add plugin "Settings" action on plugin list
 			add_action('plugin_action_links_' . plugin_basename(SO_LOADER), array(&$this, 'add_plugin_actions'));
@@ -41,10 +41,10 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 			add_filter('plugin_row_meta', array(&$this, 'add_plugin_links'), 10, 2);
 			
 			// push options page link, when generating admin menu
-			add_action('admin_menu', array(&$this, 'adminMenu'));
+			add_action('admin_menu', array(&$this, 'admin_menu'));
 			
 			//add help menu
-			add_filter('contextual_help', array(&$this,'adminHelp'), 10, 3);
+			add_filter('contextual_help', array(&$this,'admin_help'), 10, 3);
 	
 			
 		}
@@ -67,7 +67,8 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 	 */
 	public function add_plugin_links($links, $file) {
 		if($file == plugin_basename(SO_LOADER)) {
-			$links[] = '<a href="http://MyWebsiteAdvisor.com/">Visit Us Online</a>';
+			$rate_url = 'http://wordpress.org/support/view/plugin-reviews/' . basename(dirname(__FILE__)) . '?rate=5#postform';
+			$links[] = '<a href="'.$rate_url.'" target="_blank" title="Click Here to Rate and Review this Plugin on WordPress.org">Rate This Plugin</a>';
 		}
 		
 		return $links;
@@ -76,7 +77,7 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 	/**
 	 * Add menu entry for Simple Optimizer settings and attach style and script include methods
 	 */
-	public function adminMenu() {		
+	public function admin_menu() {		
 		// add option in admin menu, for settings
 		global $simple_optimizer_admin_page;
 		$simple_optimizer_admin_page = add_options_page('Simple Optimizer Plugin Options', 'Simple Optimizer', 8, __FILE__, array(&$this, 'optionsPage'));
@@ -87,11 +88,18 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 	
 	
 	
-	public function adminHelp($contextual_help, $screen_id, $screen){
+	public function admin_help($contextual_help, $screen_id, $screen){
 	
 		global $simple_optimizer_admin_page;
 		
 		if ($screen_id == $simple_optimizer_admin_page) {
+			
+			$support_the_dev = $this->display_support_us();
+			$screen->add_help_tab(array(
+				'id' => 'developer-support',
+				'title' => "Support the Developer",
+				'content' => "<h2>Support the Developer</h2><p>".$support_the_dev."</p>"
+			));
 			
 			$screen->add_help_tab(array(
 				'id' => 'plugin-support',
@@ -116,9 +124,60 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 	
 	
 	
+	public function display_support_us(){
+				
+		$html = '<p><b>Thank You for using the Related Items Manager Plugin for WordPress!</b></p>';
+		$html .= "<p>Please take a moment to <b>Support the Developer</b> by doing some of the following items:</p>";
+		
+		$rate_url = 'http://wordpress.org/support/view/plugin-reviews/' . basename(dirname(__FILE__)) . '?rate=5#postform';
+		$html .= "<li><a href='$rate_url' target='_blank' title='Click Here to Rate and Review this Plugin on WordPress.org'>Click Here</a> to Rate and Review this Plugin on WordPress.org!</li>";
+		
+		$html .= "<li><a href='http://facebook.com/MyWebsiteAdvisor' target='_blank' title='Click Here to Follow us on Facebook'>Click Here</a> to Follow MyWebsiteAdvisor on Facebook!</li>";
+		$html .= "<li><a href='http://twitter.com/MWebsiteAdvisor' target='_blank' title='Click Here to Follow us on Twitter'>Click Here</a> to Follow MyWebsiteAdvisor on Twitter!</li>";
+		$html .= "<li><a href='http://mywebsiteadvisor.com/tools/premium-wordpress-plugins/' target='_blank' title='Click Here to Purchase one of our Premium WordPress Plugins'>Click Here</a> to Purchase Premium WordPress Plugins!</li>";
 	
 	
+		return $html;
 	
+	}
+	
+	public function display_social_media(){
+	
+		$social = '<style>
+	
+		.fb_edge_widget_with_comment {
+			position: absolute;
+			top: 0px;
+			right: 200px;
+		}
+		
+		</style>
+		
+		<div  style="height:20px; vertical-align:top; width:50%; float:right; text-align:right; margin-top:5px; padding-right:16px; position:relative;">
+		
+			<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=253053091425708";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, "script", "facebook-jssdk"));</script>
+			
+			<div class="fb-like" data-href="http://www.facebook.com/MyWebsiteAdvisor" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+			
+			
+			<a href="https://twitter.com/MWebsiteAdvisor" class="twitter-follow-button" data-show-count="false"  >Follow @MWebsiteAdvisor</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		
+		
+		</div>';
+		
+		return $social;
+	
+	
+	}			
+
 	
 	
 	/**
@@ -378,42 +437,12 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 									  
 <script type="text/javascript">var wpurl = "<?php bloginfo('wpurl'); ?>";</script>
 
-<style>
-
-.fb_edge_widget_with_comment {
-	position: absolute;
-	top: 0px;
-	right: 200px;
-}
-
-</style>
-
-<div  style="height:20px; vertical-align:top; width:50%; float:right; text-align:right; margin-top:5px; padding-right:16px; position:relative;">
-
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=253053091425708";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	
-	<div class="fb-like" data-href="http://www.facebook.com/MyWebsiteAdvisor" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-	
-	
-	<a href="https://twitter.com/MWebsiteAdvisor" class="twitter-follow-button" data-show-count="false"  >Follow @MWebsiteAdvisor</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-
-</div>
+<?php echo $this->display_social_media(); ?>
 
 <div class="wrap" id="sm_div">
 
 	<div id="icon-options-general" class="icon32"><br /></div>
 	<h2>Simple Optimizer Plugin Settings</h2>
-	
-		
 		
 	<div id="poststuff" class="metabox-holder has-right-sidebar">
 		<div class="inner-sidebar">
@@ -447,7 +476,7 @@ class Simple_Optimizer_Admin extends Simple_Optimizer {
 	<p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-optimizer/' target='_blank'>Plugin Homepage</a></p>
 	<p><a href='http://mywebsiteadvisor.com/support/'  target='_blank'>Plugin Support</a></p>
 	<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Contact Us</a></p>
-	<p><a href='http://wordpress.org/support/view/plugin-reviews/simple-optimizer?rate=5'  target='_blank'>Rate and Review This Plugin</a></p>
+	<p><a href='http://wordpress.org/support/view/plugin-reviews/simple-optimizer?rate=5#postform'  target='_blank'>Rate and Review This Plugin</a></p>
 	
 <?php $this->HtmlPrintBoxFooter(true); ?>
 

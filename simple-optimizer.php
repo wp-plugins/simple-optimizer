@@ -6,7 +6,7 @@ class Simple_Optimizer {
 	 *
 	 * @var string
 	 */
-	public $version                 = '1.1.1';
+	public $version                 = '1.1.2';
 	
 	/**
 	 * Array with default options
@@ -92,7 +92,7 @@ class Simple_Optimizer {
 	/**
 	 * Plugin installation method
 	 */
-	public function activateSimpleOptimizer() {
+	public function activate_simple_optimizer() {
 		// record install time
 		add_option('simple_optimizer_installed', time(), null, 'no');
 				
