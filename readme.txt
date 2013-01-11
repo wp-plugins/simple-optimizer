@@ -3,8 +3,10 @@ Name: Simple Optimizer
 Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 2.9
-Tested up to: 3.4.2
-Stable tag: 1.1.2
+Tested up to: 3.5
+Stable tag: 1.2
+Donate link: http://MyWebsiteAdvisor.com/donations
+
 
 Check, Repair and Optimize WordPress Database. Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
 
@@ -70,23 +72,36 @@ If we choose your testimonial or website we can link to your site and generate s
 
 == Screenshots ==
 
-1. Admin Page
+1. WordPress Optimizations Settings Page
+2. Database Optimizations Settings Page
+3. Optimizer Program Output
+
+
 
 
 
 == Changelog ==
 
+= 1.2 =
+* updated plugin to use WordPress settings API
+* consolidated the plugin settings so they are all stored in one main setting, rather than individual settings in wp-options table
+* updated plugin settings page with tabs, rather than scrolling down the page
+* reorgainzed entire plugin file layout
+* updated plugin screenshots
 
-= 1.0 =
-* Initial release
 
-= 1.1 =
-* Added advanced optimization functions
-* Added contextual help menu
+= 1.1.2 =
+* updated plugin meta row links on plugin page
 
 = 1.1.1 =
 * Added link to rate and review this plugin on WordPress.org
 * resolved issue with out of place errors.
 
-= 1.1.2 =
-* updated plugin meta row links on plugin page
+= 1.1 =
+* Added advanced optimization functions
+* Added contextual help menu
+
+
+
+= 1.0 =
+* Initial release
