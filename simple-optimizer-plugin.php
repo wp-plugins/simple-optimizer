@@ -5,7 +5,7 @@ class Simple_Optimizer_Plugin{
 
 
 	//plugin version number
-	private $version = "1.2";
+	private $version = "1.2.1";
 
 
 
@@ -279,6 +279,8 @@ class Simple_Optimizer_Plugin{
 			
 			$this->tools->init();
 			
+			$this->show_optimizer_action_button();
+			
 			$this->settings_page->show_tab_nav();
 			
 			echo '<div id="poststuff" class="metabox-holder has-right-sidebar">';
@@ -296,8 +298,6 @@ class Simple_Optimizer_Plugin{
 						
 						$this->settings_page->show_settings_forms();
 						
-						$this->show_optimizer_action_button();
-						
 					echo '</div>';
 				echo '</div>';
 				
@@ -311,17 +311,17 @@ class Simple_Optimizer_Plugin{
 
 
 	private function show_optimizer_action_button(){
-		echo "<div id='optimizer-action' class='postbox'>\n";		
-			echo "<h3 class='hndle'><span>Optimizer</span></h3>\n";
-			echo "<div class='inside'>\n";
+		//echo "<div id='optimizer-action' class='postbox'>\n";		
+			//echo "<h3 class='hndle'><span>Optimizer</span></h3>\n";
+			//echo "<div class='inside'>\n";
 				echo "<form method='post'>";
 					echo "<input type='hidden' name='action' value='run_simple_optimizer' >";
 					echo '<div style="padding-left: 1.5em; margin-left:5px;">';
-						echo "<p><input type='submit' value=' Run Optimizer' class='button-primary'></p>";
+						echo "<p><input type='submit' value='Optimize WordPress' class='button-primary'></p>";
 					echo "</div>";
 				echo "</form>";	
-			echo "</div>\n";
-		echo "</div>\n";
+			//echo "</div>\n";
+		//echo "</div>\n";
 	}
 
 

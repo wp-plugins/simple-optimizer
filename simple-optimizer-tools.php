@@ -23,31 +23,41 @@ class Simple_Optimizer_Tools{
 				$db_options = $this->opt['db_optimizer_settings'];
 				$wp_options = $this->opt['wordpress_optimizer_settings'];
 				
+				$action = false;
+				
 				if( isset($wp_options)  ){
 	
-					$this->performWordPressOptimization();
+					$action = $this->performWordPressOptimization();
 	
 				}
 				
 				if($db_options['check_database'] === "true"){
 	
 					$this->performDatabaseCheck();
+					$action = true;
+					
 	
 				}
 				
 				if($db_options['repair_database'] === "true"){
 	
 					$this->performDatabaseRepair();
-	
+					$action = true;
+					
 				}
 				
 				if($db_options['optimize_database'] === "true"){
 	
 					$this->performDatabaseOptimization();
-	
+					$action = true;
+					
 				}
 			
 
+				if($action == false){
+					echo "<p><strong>Nothing To Do! <br>Please Enable some of the Optimization Functions.</strong></p>";
+				}
+				
 				
 			echo "</div>";
 				
@@ -64,6 +74,7 @@ class Simple_Optimizer_Tools{
 	public function performWordPressOptimization(){
 	
 		global $wpdb;
+		$action = false;
 		
 		$optimization_queries = array(
 			
@@ -87,13 +98,15 @@ class Simple_Optimizer_Tools{
 	
 		foreach($queries as $method => $query){
 			if($wp_optimization_methods[$method] === "true"){
-			
+				$action = true;
+				
 				echo "<p>Performing Optimization: " . $method."<br>";
 				$result = $wpdb->query($query);
 				echo "$result items deleted.</p>";
 						
 			}
 		}
+		return $action;
 	}
 	
 	

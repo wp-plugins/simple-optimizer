@@ -3,14 +3,13 @@
 Plugin Name: Simple Optimizer
 Plugin URI: http://MyWebsiteAdvisor.com/tools/wordpress-plugins/simple-optimizer/
 Description: Check, Repair and Optimize WordPress Database. Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options.
-Version: 1.2
+Version: 1.2.1
 Author: MyWebsiteAdvisor
 Author URI: http://MyWebsiteAdvisor.com
 */
 
 
 register_activation_hook(__FILE__, 'simple_optimizer_activate');
-register_activation_hook(__FILE__, 'simple_optimizer_cleanup_options');
 
 
 function simple_optimizer_activate() {
@@ -24,13 +23,6 @@ function simple_optimizer_activate() {
 		trigger_error('', E_USER_ERROR);
 	}
 	
-}
-
-function simple_optimizer_cleanup_options(){
-
-	delete_option('simple_optimizer_plugin');
-	delete_option('simple_optimizer_installed');
-
 }
 
 

@@ -4,7 +4,7 @@ Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 2.9
 Tested up to: 3.5
-Stable tag: 1.2
+Stable tag: 1.2.1
 Donate link: http://MyWebsiteAdvisor.com/donations
 
 
@@ -81,6 +81,11 @@ If we choose your testimonial or website we can link to your site and generate s
 
 
 == Changelog ==
+
+= 1.2.1 =
+* moved 'Optimize WordPress' button at the top of page.
+* added message "Nothing To Do" when no optimization functions are selected
+
 
 = 1.2 =
 * updated plugin to use WordPress settings API
