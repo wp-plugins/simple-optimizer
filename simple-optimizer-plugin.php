@@ -2,12 +2,12 @@
 
 class Simple_Optimizer_Plugin{
 
-
+	private $debug = false;
 
 	//plugin version number
-	private $version = "1.2.1";
+	private $version = "1.2.2";
 
-
+	
 
 
 	//holds simple security settings page class
@@ -196,8 +196,8 @@ class Simple_Optimizer_Plugin{
                 ),
 				array(
                     'name' => 'delete_unused_tags',
-                    'label' => __( 'Delete Unused Tages ', $this->plugin_name ),
-                    'desc' => 'Delete Unused Tages (Advanced)',
+                    'label' => __( 'Delete Unused Tags ', $this->plugin_name ),
+                    'desc' => 'Delete Unused Tags (Advanced)',
                     'type' => 'radio',
 					//'default' => 'true',
                     'options' => array(
@@ -347,6 +347,16 @@ class Simple_Optimizer_Plugin{
 				'content' => "<h2>Support the Developer</h2><p>".$support_the_dev."</p>"
 			));
 			
+			
+			$video_id = "lkdfqqPG1cY";
+			$video_code = '<iframe width="500" height="350" src="http://www.youtube.com/embed/'.$video_id.'?rel=0&vq=hd720" frameborder="0" allowfullscreen></iframe>';
+
+			$screen->add_help_tab(array(
+				'id' => 'tutorial-video',
+				'title' => "Tutorial Video",
+				'content' => "<h2>{$this->plugin_title} Tutorial Video</h2><p>$video_code</p>"
+			));
+			
 			$screen->add_help_tab(array(
 				'id' => 'plugin-support',
 				'title' => "Plugin Support",
@@ -397,6 +407,7 @@ class Simple_Optimizer_Plugin{
 	private function get_settings_sidebar(){
 	
 		$plugin_resources = "<p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-optimizer/' target='_blank'>Plugin Homepage</a></p>
+			<p><a href='http://mywebsiteadvisor.com/learning/video-tutorials/simple-optimizer-tutorial/'  target='_blank'>Plugin Tutorial</a></p>
 			<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Plugin Support</a></p>
 			<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Contact Us</a></p>
 			<p><a href='http://wordpress.org/support/view/plugin-reviews/simple-security?rate=5#postform'  target='_blank'>Rate and Review This Plugin</a></p>";
@@ -460,17 +471,19 @@ class Simple_Optimizer_Plugin{
 		//build optional tabs, using debug tools class worker methods as callbacks
 	private function build_optional_tabs(){
 	
-		//general debug settings
-		$plugin_debug = array(
-			'id' => 'plugin_debug',
-			'title' => __( 'Plugin Settings Debug', $this->plugin_name ),
-			'callback' => array(&$this, 'show_plugin_settings')
-		);
-
-		//$enabled = isset($this->opt['debug_settings']['enable_display_plugin_settings']) ? $this->opt['debug_settings']['enable_display_plugin_settings'] : 'false';
-		//if( $enabled === 'true' ){ 	
-		$this->settings_page->add_section( $plugin_debug );
-		//}
+		if($debug == true){
+		
+			//general debug settings
+			$plugin_debug = array(
+				'id' => 'plugin_debug',
+				'title' => __( 'Plugin Settings Debug', $this->plugin_name ),
+				'callback' => array(&$this, 'show_plugin_settings')
+			);
+	
+				
+			$this->settings_page->add_section( $plugin_debug );
+			
+		}
 		
 	}
 	
