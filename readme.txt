@@ -4,7 +4,7 @@ Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 2.9
 Tested up to: 3.5
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 Donate link: http://MyWebsiteAdvisor.com/donations
 
 
@@ -19,6 +19,10 @@ Check, Repair and Optimize the WordPress MySQL Database.
 Search for and Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
 
 
+
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1):
+
+http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1
 
 
 Developer Website: http://MyWebsiteAdvisor.com/
@@ -57,6 +61,10 @@ Please send screenshots as well as a detailed description of the problem.
 
 
 
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1):
+
+http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1
+
 
 
 Developer Website: http://MyWebsiteAdvisor.com/
@@ -81,6 +89,11 @@ If we choose your testimonial or website we can link to your site and generate s
 
 
 == Changelog ==
+
+= 1.2.2 =
+* updated readme file, added tutorial video.
+* updated plugin admin interface to display tutorial video.
+
 
 = 1.2.1 =
 * moved 'Optimize WordPress' button at the top of page.
