@@ -4,11 +4,12 @@ Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 2.9
 Tested up to: 3.5
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 Donate link: http://MyWebsiteAdvisor.com/donations
 
 
 Check, Repair and Optimize WordPress Database. Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
+
 
 
 == Description ==
@@ -44,11 +45,22 @@ Requirements:
 To-do:
 
 
+
+
+
 == Installation ==
 
 1. Upload `simple-optimizer/` to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Go to Simple Optimizer Plugin settings and enable Simple Optimizer Plugin.
+
+
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1):
+
+http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1
+
+
+
 
 
 == Frequently Asked Questions ==
@@ -78,6 +90,9 @@ Please submit your website or testimonial here: http://MyWebsiteAdvisor.com/test
 If we choose your testimonial or website we can link to your site and generate some free traffic for you!
 
 
+
+
+
 == Screenshots ==
 
 1. WordPress Optimizations Settings Page
@@ -89,6 +104,11 @@ If we choose your testimonial or website we can link to your site and generate s
 
 
 == Changelog ==
+
+= 1.2.3 =
+* added tab for tutorial video on plugin settings tabs
+* added a link for plugin tutorial page on our website on the plugin row meta links on plugins page
+
 
 = 1.2.2 =
 * updated readme file, added tutorial video.

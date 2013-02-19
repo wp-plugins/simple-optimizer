@@ -5,7 +5,7 @@ class Simple_Optimizer_Plugin{
 	private $debug = false;
 
 	//plugin version number
-	private $version = "1.2.2";
+	private $version = "1.2.3";
 
 	
 
@@ -348,8 +348,24 @@ class Simple_Optimizer_Plugin{
 			));
 			
 			
+			$video_code = "<style>
+		.videoWrapper {
+			position: relative;
+			padding-bottom: 56.25%; /* 16:9 */
+			padding-top: 25px;
+			height: 0;
+		}
+		.videoWrapper iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		</style>";
+		
 			$video_id = "lkdfqqPG1cY";
-			$video_code = '<iframe width="500" height="350" src="http://www.youtube.com/embed/'.$video_id.'?rel=0&vq=hd720" frameborder="0" allowfullscreen></iframe>';
+			$video_code .= '<div class="videoWrapper"><iframe width="500" height="350" src="http://www.youtube.com/embed/'.$video_id.'?rel=0&vq=hd720" frameborder="0" allowfullscreen></iframe></div>';
 
 			$screen->add_help_tab(array(
 				'id' => 'tutorial-video',
@@ -471,19 +487,26 @@ class Simple_Optimizer_Plugin{
 		//build optional tabs, using debug tools class worker methods as callbacks
 	private function build_optional_tabs(){
 	
-		if($debug == true){
+		if($this->debug === true){
 		
 			//general debug settings
 			$plugin_debug = array(
 				'id' => 'plugin_debug',
 				'title' => __( 'Plugin Settings Debug', $this->plugin_name ),
-				'callback' => array(&$this, 'show_plugin_settings')
+				'callback' => array($this, 'show_plugin_settings')
 			);
 	
 				
 			$this->settings_page->add_section( $plugin_debug );
 			
 		}
+		
+		$plugin_tutorial = array(
+			'id' => 'plugin_tutorial',
+			'title' => __( 'Plugin Tutorial Video', $this->plugin_name ),
+			'callback' => array(&$this, 'show_plugin_tutorual')
+		);
+		$this->settings_page->add_section( $plugin_tutorial );
 		
 	}
 	
@@ -497,6 +520,32 @@ class Simple_Optimizer_Plugin{
 			print_r($this->opt);
 		echo "</pre>";
 			
+	}
+
+
+
+	public function show_plugin_tutorual(){
+	
+		echo "<style>
+		.videoWrapper {
+			position: relative;
+			padding-bottom: 56.25%; /* 16:9 */
+			padding-top: 25px;
+			height: 0;
+		}
+		.videoWrapper iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		</style>";
+
+		$video_id = "lkdfqqPG1cY";
+		echo sprintf( '<div class="videoWrapper"><iframe width="640" height="360" src="http://www.youtube.com/embed/%1$s?rel=0&vq=hd720" frameborder="0" allowfullscreen ></iframe></div>', $video_id);
+		
+	
 	}
 
 
@@ -517,6 +566,12 @@ class Simple_Optimizer_Plugin{
 	 */
 	public function add_plugin_links($links, $file) {
 		if($file == plugin_basename(SO_LOADER)) {
+			$upgrade_url = 'http://mywebsiteadvisor.com/products-page/premium-wordpress-plugin/simple-optimizer-ultra/';
+			$links[] = '<a href="'.$upgrade_url.'" target="_blank" title="Click Here to Upgrade this Plugin!">Upgrade Plugin</a>';
+			
+			$tutorial_url = 'http://mywebsiteadvisor.com/learning/video-tutorials/simple-optimizer-tutorial/';
+			$links[] = '<a href="'.$tutorial_url.'" target="_blank" title="Click Here to View the Plugin Video Tutorial!">Tutorial Video</a>';
+			
 			$rate_url = 'http://wordpress.org/support/view/plugin-reviews/' . basename(dirname(__FILE__)) . '?rate=5#postform';
 			$links[] = '<a href="'.$rate_url.'" target="_blank" title="Click Here to Rate and Review this Plugin on WordPress.org">Rate This Plugin</a>';
 		}
