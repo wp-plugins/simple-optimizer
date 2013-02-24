@@ -5,7 +5,7 @@ class Simple_Optimizer_Plugin{
 	private $debug = false;
 
 	//plugin version number
-	private $version = "1.2.3";
+	private $version = "1.2.4";
 
 	
 
@@ -364,7 +364,7 @@ class Simple_Optimizer_Plugin{
 		}
 		</style>";
 		
-			$video_id = "lkdfqqPG1cY";
+			$video_id = "3PU6g-vMdtM";
 			$video_code .= '<div class="videoWrapper"><iframe width="500" height="350" src="http://www.youtube.com/embed/'.$video_id.'?rel=0&vq=hd720" frameborder="0" allowfullscreen></iframe></div>';
 
 			$screen->add_help_tab(array(
@@ -542,7 +542,7 @@ class Simple_Optimizer_Plugin{
 		}
 		</style>";
 
-		$video_id = "lkdfqqPG1cY";
+		$video_id = "3PU6g-vMdtM";
 		echo sprintf( '<div class="videoWrapper"><iframe width="640" height="360" src="http://www.youtube.com/embed/%1$s?rel=0&vq=hd720" frameborder="0" allowfullscreen ></iframe></div>', $video_id);
 		
 	

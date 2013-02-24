@@ -2,9 +2,9 @@
 Name: Simple Optimizer
 Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
-Requires at least: 2.9
-Tested up to: 3.5
-Stable tag: 1.2.3
+Requires at least: 3.3
+Tested up to: 3.5.1
+Stable tag: 1.2.4
 Donate link: http://MyWebsiteAdvisor.com/donations
 
 
@@ -21,9 +21,9 @@ Search for and Delete Spam, Revisions, Auto Drafts, Pending Comments and Transie
 
 
 
-Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1):
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
 
-http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1
+http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
 
 
 Developer Website: http://MyWebsiteAdvisor.com/
@@ -39,7 +39,8 @@ If we choose your testimonial or website we can link to your site and generate s
 
 Requirements:
 
-* PHP5
+* PHP v5.0+
+* WordPress v3.3+
 
 
 To-do:
@@ -55,9 +56,9 @@ To-do:
 3. Go to Simple Optimizer Plugin settings and enable Simple Optimizer Plugin.
 
 
-Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1):
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
 
-http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1
+http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
 
 
 
@@ -73,9 +74,9 @@ Please send screenshots as well as a detailed description of the problem.
 
 
 
-Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1):
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
 
-http://www.youtube.com/watch?v=lkdfqqPG1cY&hd=1
+http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
 
 
 
@@ -104,6 +105,11 @@ If we choose your testimonial or website we can link to your site and generate s
 
 
 == Changelog ==
+
+= 1.2.4 =
+* updated readme file, required version of WordPress is v3.3+
+* updated video tutorial links, embeds, etc...
+
 
 = 1.2.3 =
 * added tab for tutorial video on plugin settings tabs
