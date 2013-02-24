@@ -2,13 +2,14 @@
 Name: Simple Optimizer
 Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
-Requires at least: 2.9
-Tested up to: 3.5
-Stable tag: 1.2.1
+Requires at least: 3.3
+Tested up to: 3.5.1
+Stable tag: 1.2.4
 Donate link: http://MyWebsiteAdvisor.com/donations
 
 
 Check, Repair and Optimize WordPress Database. Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
+
 
 
 == Description ==
@@ -19,6 +20,10 @@ Check, Repair and Optimize the WordPress MySQL Database.
 Search for and Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
 
 
+
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
+
+http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
 
 
 Developer Website: http://MyWebsiteAdvisor.com/
@@ -34,10 +39,14 @@ If we choose your testimonial or website we can link to your site and generate s
 
 Requirements:
 
-* PHP5
+* PHP v5.0+
+* WordPress v3.3+
 
 
 To-do:
+
+
+
 
 
 == Installation ==
@@ -45,6 +54,14 @@ To-do:
 1. Upload `simple-optimizer/` to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Go to Simple Optimizer Plugin settings and enable Simple Optimizer Plugin.
+
+
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
+
+http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
+
+
+
 
 
 == Frequently Asked Questions ==
@@ -56,6 +73,10 @@ Check in your error.log if you can.
 Please send screenshots as well as a detailed description of the problem.
 
 
+
+Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
+
+http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
 
 
 
@@ -70,6 +91,9 @@ Please submit your website or testimonial here: http://MyWebsiteAdvisor.com/test
 If we choose your testimonial or website we can link to your site and generate some free traffic for you!
 
 
+
+
+
 == Screenshots ==
 
 1. WordPress Optimizations Settings Page
@@ -81,6 +105,21 @@ If we choose your testimonial or website we can link to your site and generate s
 
 
 == Changelog ==
+
+= 1.2.4 =
+* updated readme file, required version of WordPress is v3.3+
+* updated video tutorial links, embeds, etc...
+
+
+= 1.2.3 =
+* added tab for tutorial video on plugin settings tabs
+* added a link for plugin tutorial page on our website on the plugin row meta links on plugins page
+
+
+= 1.2.2 =
+* updated readme file, added tutorial video.
+* updated plugin admin interface to display tutorial video.
+
 
 = 1.2.1 =
 * moved 'Optimize WordPress' button at the top of page.
