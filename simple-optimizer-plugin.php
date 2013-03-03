@@ -5,7 +5,7 @@ class Simple_Optimizer_Plugin{
 	private $debug = false;
 
 	//plugin version number
-	private $version = "1.2.4";
+	private $version = "1.2.6";
 
 	
 
@@ -54,7 +54,7 @@ class Simple_Optimizer_Plugin{
         add_action( 'admin_menu', array(&$this, 'admin_menu') );
 		
 		//add help menu to settings page
-		add_filter( 'contextual_help', array(&$this,'admin_help'), 10, 3);	
+		//add_filter( 'contextual_help', array(&$this,'admin_help'), 10, 3);	
 		
 		// add plugin "Settings" action on plugin list
 		add_action('plugin_action_links_' . plugin_basename(SO_LOADER), array(&$this, 'add_plugin_actions'));
@@ -67,10 +67,7 @@ class Simple_Optimizer_Plugin{
 		$this->tools = new Simple_Optimizer_Tools;
 		$this->tools->opt = $this->opt;
 		
-		//$this->tools->init();
-
-
-
+	
     }
 	
 	
@@ -107,11 +104,11 @@ class Simple_Optimizer_Plugin{
 		$settings_sections = array(
 			array(
 				'id' => 'wordpress_optimizer_settings',
-				'title' => __( 'WordPress Optimization', $this->plugin_name )
+				'title' => __( 'WP Optimization', $this->plugin_name )
 			),
 			array(
 				'id' => 'db_optimizer_settings',
-				'title' => __( 'Database Optimization', $this->plugin_name )
+				'title' => __( 'DB Optimization', $this->plugin_name )
 			)
 		);
 
@@ -133,7 +130,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Spam Comments', $this->plugin_name ),
                     'desc' => 'Delete Spam Comments (Recommended)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -144,7 +140,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Un-Approved Comments', $this->plugin_name ),
                     'desc' => 'Delete Un-Approved Comments (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -155,7 +150,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Revisions', $this->plugin_name ),
                     'desc' => 'Delete Revisions (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -166,7 +160,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Auto Drafts', $this->plugin_name ),
                     'desc' => 'Delete Auto Drafts (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -177,7 +170,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Transient Options', $this->plugin_name ),
                     'desc' => 'Delete Transient Options (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -188,7 +180,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Unsed Postmeta', $this->plugin_name ),
                     'desc' => 'Delete Unsed Postmeta (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -199,7 +190,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Unused Tags ', $this->plugin_name ),
                     'desc' => 'Delete Unused Tags (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -210,7 +200,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Delete Pingbacks', $this->plugin_name ),
                     'desc' => 'Delete Pingbacks (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -223,7 +212,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Optimize Database', $this->plugin_name ),
                     'desc' => 'Optimize WordPress MySQL Database (Recommended)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -234,7 +222,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Check Database', $this->plugin_name ),
                     'desc' => 'Check WordPress MySQL Database (Recommended)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -245,7 +232,6 @@ class Simple_Optimizer_Plugin{
                     'label' => __( 'Repair Database', $this->plugin_name ),
                     'desc' => 'Repair WordPress MySQL Database (Advanced)',
                     'type' => 'radio',
-					//'default' => 'true',
                     'options' => array(
                         'true' => 'Enabled',
                         'false' => 'Disabled'
@@ -311,17 +297,14 @@ class Simple_Optimizer_Plugin{
 
 
 	private function show_optimizer_action_button(){
-		//echo "<div id='optimizer-action' class='postbox'>\n";		
-			//echo "<h3 class='hndle'><span>Optimizer</span></h3>\n";
-			//echo "<div class='inside'>\n";
-				echo "<form method='post'>";
-					echo "<input type='hidden' name='action' value='run_simple_optimizer' >";
-					echo '<div style="padding-left: 1.5em; margin-left:5px;">';
-						echo "<p><input type='submit' value='Optimize WordPress' class='button-primary'></p>";
-					echo "</div>";
-				echo "</form>";	
-			//echo "</div>\n";
-		//echo "</div>\n";
+
+		echo "<form method='post'>";
+			echo "<input type='hidden' name='action' value='run_simple_optimizer' >";
+			echo '<div style="padding-left: 1.5em; margin-left:5px;">';
+				echo "<p><input type='submit' value='Optimize WordPress' class='button-primary'></p>";
+			echo "</div>";
+		echo "</form>";	
+
 	}
 
 
@@ -331,14 +314,23 @@ class Simple_Optimizer_Plugin{
    	public function admin_menu() {
 		
         $this->page_menu = add_options_page( $this->plugin_title, $this->plugin_title, 'manage_options',  $this->setting_name, array($this, 'plugin_settings_page') );
+		
+		
+   		global $wp_version;
+
+   		if($this->page_menu && version_compare($wp_version, '3.3', '>=')){
+			add_action("load-". $this->page_menu, array($this, 'admin_help'));	
+		}
     }
 
 
-	public function admin_help($contextual_help, $screen_id, $screen){
+
+
+	//public function admin_help($contextual_help, $screen_id, $screen){
+	public function admin_help(){
 	
-		
-		
-		if ( $screen_id == $this->page_menu  ) {
+		$screen = get_current_screen();
+		//if ( $screen_id == $this->page_menu  ) {
 				
 			$support_the_dev = $this->display_support_us();
 			$screen->add_help_tab(array(
@@ -379,11 +371,15 @@ class Simple_Optimizer_Plugin{
 				'content' => "<h2>{$this->plugin_title} Support</h2><p>For {$this->plugin_title} Plugin Support please visit <a href='http://mywebsiteadvisor.com/support/' target='_blank'>MyWebsiteAdvisor.com</a></p>"
 			));
 			
-			
+			$screen->add_help_tab(array(
+				'id' => 'upgrade_plugin',
+				'title' => __( 'Plugin Upgrades', $this->plugin_name ),
+				'content' => $this->get_plugin_upgrades()		
+			));		
 
 			$screen->set_help_sidebar("<p>Please Visit us online for more Free WordPress Plugins!</p><p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/' target='_blank'>MyWebsiteAdvisor.com</a></p><br>");
 			
-		}
+		//}
 			
 		
 
@@ -424,9 +420,9 @@ class Simple_Optimizer_Plugin{
 	
 		$plugin_resources = "<p><a href='http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-optimizer/' target='_blank'>Plugin Homepage</a></p>
 			<p><a href='http://mywebsiteadvisor.com/learning/video-tutorials/simple-optimizer-tutorial/'  target='_blank'>Plugin Tutorial</a></p>
-			<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Plugin Support</a></p>
+			<p><a href='http://mywebsiteadvisor.com/support/'  target='_blank'>Plugin Support</a></p>
 			<p><a href='http://mywebsiteadvisor.com/contact-us/'  target='_blank'>Contact Us</a></p>
-			<p><a href='http://wordpress.org/support/view/plugin-reviews/simple-security?rate=5#postform'  target='_blank'>Rate and Review This Plugin</a></p>";
+			<p><a href='http://wordpress.org/support/view/plugin-reviews/simple-optimizer?rate=5#postform'  target='_blank'>Rate and Review This Plugin</a></p>";
 	
 		$more_plugins = "<p><a href='http://mywebsiteadvisor.com/tools/premium-wordpress-plugins/'  target='_blank'>Premium WordPress Plugins!</a></p>
 			<p><a href='http://profiles.wordpress.org/MyWebsiteAdvisor/'  target='_blank'>Free Plugins on Wordpress.org!</a></p>
@@ -492,7 +488,7 @@ class Simple_Optimizer_Plugin{
 			//general debug settings
 			$plugin_debug = array(
 				'id' => 'plugin_debug',
-				'title' => __( 'Plugin Settings Debug', $this->plugin_name ),
+				'title' => __( 'Debug', $this->plugin_name ),
 				'callback' => array($this, 'show_plugin_settings')
 			);
 	
@@ -503,14 +499,135 @@ class Simple_Optimizer_Plugin{
 		
 		$plugin_tutorial = array(
 			'id' => 'plugin_tutorial',
-			'title' => __( 'Plugin Tutorial Video', $this->plugin_name ),
+			'title' => __( 'Tutorial Video', $this->plugin_name ),
 			'callback' => array(&$this, 'show_plugin_tutorual')
 		);
 		$this->settings_page->add_section( $plugin_tutorial );
 		
+		
+		$upgrade_plugin = array(
+			'id' => 'upgrade_plugin',
+			'title' => __( 'Plugin Upgrades', $this->plugin_name ),
+			'callback' => array(&$this, 'show_plugin_upgrades')
+		);
+		$this->settings_page->add_section( $upgrade_plugin );
+		
 	}
 	
 
+ 
+ 
+ 
+ 	
+	public function get_plugin_upgrades(){
+		ob_start();
+		$this->show_plugin_upgrades();
+		return ob_get_clean();	
+	}
+	
+	
+	public function show_plugin_upgrades(){
+		
+		$html = "<style>
+			ul.upgrade_features li { list-style-type: disc; }
+			ul.upgrade_features  { margin-left:30px;}
+		</style>";
+		
+		$html .= "<script>
+					
+			function  simple_optimizer_upgrade(){
+        		window.open('http://mywebsiteadvisor.com/products-page/premium-wordpress-plugin/simple-optimizer-ultra/');
+        		return false;
+			}		
+			
+			function  try_simple_security(){
+        		window.open('http://wordpress.org/extend/plugins/simple-security/');
+        		return false;
+			}	
+			
+			function  try_simple_backup(){
+        		window.open('http://wordpress.org/extend/plugins/simple-backup/');
+        		return false;
+			}	
+
+
+
+			function  simple_backup_learn_more(){
+        		window.open('http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-backup/');
+        		return false;
+			}	
+			
+			function  simple_optimizer_learn_more(){
+        		window.open('http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-optimizer/');
+        		return false;
+			}				
+
+			function  simple_security_learn_more(){
+        		window.open('http://mywebsiteadvisor.com/tools/wordpress-plugins/simple-security/');
+        		return false;
+			}	
+			
+		</script>";
+		
+
+		$html .= "</form><h2>Upgrade to Simple Optimizer Ultra Today!</h2>";
+		
+		$html .= "<p><b>Premium Features include:</b></p>";
+		
+		$html .= "<ul class='upgrade_features'>";
+		$html .= "<li>Scheduled Automatic WordPress and Database Optimizations</li>";	
+		$html .= "<li>Recieve email notification of the scheduled optimization status</li>";
+		$html .= "<li>Priority Support License</li>";
+		$html .= "</ul>";
+		
+		$html .=  '<div style="padding-left: 1.5em; margin-left:5px;">';
+		$html .= "<p class='submit'>";
+		$html .= "<input type='submit' class='button-primary' value='Upgrade to Simple Optimizer Ultra &raquo;' onclick='return simple_optimizer_upgrade()'>&nbsp;";
+		$html .= "<input type='submit' class='button-secondary' value='Learn More &raquo;' onclick='return simple_optimizer_learn_more()'>";		
+		$html .= "</p>";
+		$html .=  "</div>";
+
+
+		$html .= "<hr>";
+		
+		
+
+		
+		
+		$html .= "<h2>Also Try Simple Backup!</h2>";
+		$html .= "<p>Simple Bacup can quickly and easily create a Full Backup of your WordPress Database and Website Files!</p>";
+				
+		$html .=  '<div style="padding-left: 1.5em; margin-left:5px;">';
+		$html .= "<p class='submit'>";
+		$html .= "<input type='submit' class='button-primary' value='Try Simple Backup &raquo;' onclick='return try_simple_backup()'>&nbsp;";
+		$html .= "<input type='submit' class='button-secondary' value='Learn More &raquo;' onclick='return simple_backup_learn_more()'>";
+		$html .= "</p>";	
+		$html .=  "</div>";
+	
+	
+		$html .= "<hr>";
+		
+		
+		$html .= "<h2>Also Try Simple Security!</h2>";
+		$html .= "<p>Simple Security is an access log system for WordPress which can automatically block access to your website after a specified number of failed login attempts from an IP Address.</p>";
+		
+		$html .=  '<div style="padding-left: 1.5em; margin-left:5px;">';
+		$html .= "<p class='submit'>";
+		$html .= "<input type='submit' class='button-primary' value='Try Simple Security &raquo;' onclick='return try_simple_security()'>&nbsp;";
+		$html .= "<input type='submit' class='button-secondary' value='Learn More &raquo;' onclick='return simple_security_learn_more()'>";
+		$html .= "</p>";	
+		$html .=  "</div>";
+		
+		echo $html;
+	}
+
+
+ 
+ 
+
+ 
+ 
+ 
  
 
 	// displays the plugin options array

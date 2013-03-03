@@ -4,8 +4,8 @@ Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.2.4
-Donate link: http://MyWebsiteAdvisor.com/donations
+Stable tag: 1.2.6
+Donate link: http://MyWebsiteAdvisor.com/donations/
 
 
 Check, Repair and Optimize WordPress Database. Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
@@ -20,6 +20,13 @@ Check, Repair and Optimize the WordPress MySQL Database.
 Search for and Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
 
 
+<a href="http://mywebsiteadvisor.com/products-page/premium-wordpress-plugin/simple-optimizer-ultra/">**Upgrade to Simple Optimizer Ultra**</a> for advanced features including:
+
+* Scheduled Automatic WordPress and Database Optimizations
+* Recieve email notification of the scheduled optimization status
+* Priority Support License
+
+
 
 Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
 
@@ -28,13 +35,12 @@ http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
 
 Developer Website: http://MyWebsiteAdvisor.com/
 
+Plugin Support: http://MyWebsiteAdvisor.com/support/
+
 Plugin Page: http://MyWebsiteAdvisor.com/tools/wordpress-plugins/simple-optimizer/
 
 Video Tutorial: http://mywebsiteadvisor.com/learning/video-tutorials/simple-optimizer-tutorial/
 
-We are looking for testimonials and live examples of our plugins on your website!  
-Please submit your website or testimonial here: http://MyWebsiteAdvisor.com/testimonials/  
-If we choose your testimonial or website we can link to your site and generate some free traffic for you!
 
 
 Requirements:
@@ -74,6 +80,14 @@ Please send screenshots as well as a detailed description of the problem.
 
 
 
+<a href="http://mywebsiteadvisor.com/products-page/premium-wordpress-plugin/simple-optimizer-ultra/">**Upgrade to Simple Optimizer Ultra**</a> for advanced features including:
+
+* Scheduled Automatic WordPress and Database Optimizations
+* Recieve email notification of the scheduled optimization status
+* Priority Support License
+
+
+
 Check out the [Simple Optimizer Plugin for WordPress Video Tutorial](http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1):
 
 http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
@@ -82,13 +96,12 @@ http://www.youtube.com/watch?v=3PU6g-vMdtM&hd=1
 
 Developer Website: http://MyWebsiteAdvisor.com/
 
+Plugin Support: http://MyWebsiteAdvisor.com/support/
+
 Plugin Page: http://MyWebsiteAdvisor.com/tools/wordpress-plugins/simple-optimizer/
 
 Video Tutorial: http://mywebsiteadvisor.com/learning/video-tutorials/simple-optimizer-tutorial/
 
-We are looking for testimonials and live examples of our plugins on your website!
-Please submit your website or testimonial here: http://MyWebsiteAdvisor.com/testimonials/
-If we choose your testimonial or website we can link to your site and generate some free traffic for you!
 
 
 
@@ -105,6 +118,20 @@ If we choose your testimonial or website we can link to your site and generate s
 
 
 == Changelog ==
+
+
+= 1.2.6 =
+* updated contextual help, removed depricated filter and updated to preferred method
+* updated plugin upgrades info tab on plugin settings page
+* added uninstall and deactivation funtions to clear plugin settings
+* updated readme file
+
+
+= 1.2.5 =
+* updated readme file
+* added plugin upgrades tab to plugin settings page
+
+
 
 = 1.2.4 =
 * updated readme file, required version of WordPress is v3.3+
