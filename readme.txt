@@ -4,7 +4,7 @@ Contributors: MyWebsiteAdvisor, ChrisHurst
 Tags: Optimize, Compress, Maintenance, Repair, Admin
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 Donate link: http://MyWebsiteAdvisor.com/donations/
 
 
@@ -20,7 +20,7 @@ Check, Repair and Optimize the WordPress MySQL Database.
 Search for and Delete Spam, Revisions, Auto Drafts, Pending Comments and Transient Options. 
 
 
-<a href="http://mywebsiteadvisor.com/products-page/premium-wordpress-plugin/simple-optimizer-ultra/">**Upgrade to Simple Optimizer Ultra**</a> for advanced features including:
+<a href="http://MyWebsiteAdvisor.com/tools/wordpress-plugins/simple-optimizer/">**Upgrade to Simple Optimizer Ultra**</a> for advanced features including:
 
 * Scheduled Automatic WordPress and Database Optimizations
 * Recieve email notification of the scheduled optimization status
@@ -80,7 +80,7 @@ Please send screenshots as well as a detailed description of the problem.
 
 
 
-<a href="http://mywebsiteadvisor.com/products-page/premium-wordpress-plugin/simple-optimizer-ultra/">**Upgrade to Simple Optimizer Ultra**</a> for advanced features including:
+<a href="http://MyWebsiteAdvisor.com/tools/wordpress-plugins/simple-optimizer/">**Upgrade to Simple Optimizer Ultra**</a> for advanced features including:
 
 * Scheduled Automatic WordPress and Database Optimizations
 * Recieve email notification of the scheduled optimization status
@@ -118,6 +118,10 @@ Video Tutorial: http://mywebsiteadvisor.com/learning/video-tutorials/simple-opti
 
 
 == Changelog ==
+
+
+= 1.2.7 =
+* Added revision management system
 
 
 = 1.2.6 =

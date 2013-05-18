@@ -5,7 +5,7 @@ class Simple_Optimizer_Plugin{
 	private $debug = false;
 
 	//plugin version number
-	private $version = "1.2.6";
+	private $version = "1.2.7";
 
 	
 
@@ -52,9 +52,7 @@ class Simple_Optimizer_Plugin{
 		
 		//create menu in wp admin menu
         add_action( 'admin_menu', array(&$this, 'admin_menu') );
-		
-		//add help menu to settings page
-		//add_filter( 'contextual_help', array(&$this,'admin_help'), 10, 3);	
+	
 		
 		// add plugin "Settings" action on plugin list
 		add_action('plugin_action_links_' . plugin_basename(SO_LOADER), array(&$this, 'add_plugin_actions'));
@@ -67,11 +65,61 @@ class Simple_Optimizer_Plugin{
 		$this->tools = new Simple_Optimizer_Tools;
 		$this->tools->opt = $this->opt;
 		
+		
+		add_action('plugins_loaded', array($this, 'define_WP_POST_REVISIONS'));
 	
     }
 	
 	
+	function define_WP_POST_REVISIONS(){
+		
+		$display_on = false;
+		
+		if(isset($_GET['tab']) && isset($_GET['settings-updated']) && $_GET['tab'] == 'revision_settings' && $_GET['settings-updated'] == "true" ){
+		
+			$display_on = true;
+			
+		}
+		
+		
+		$value = $this->opt['revision_settings']['revision_management'];
+		if($value == 'count'){
+			$value = 10;
+			$count = $this->opt['revision_settings']['revision_save_number'];
+			if($count > 0){
+				$value = $count;	
+			}
+		}
+		
+		if(define('WP_POST_REVISIONS', $value)){
+			
+			switch(WP_POST_REVISIONS){
+				
+				case 'true':
+					$display = "Save All Revisions";
+					break;	
+					
+				case '0':
+					$display = "Do Not Save Any Revisions";
+					break;		
+				
+			}
+			
+			if(is_numeric($value) && $value > 0){
+					$display = "Save $value Revisions";
+			}
+			
+			if($display_on)
+				echo '<div class="updated"><p>Success:  WP_POST_REVISIONS is set to: ' .$display .'</p></div>';	
+		}else{
+			if($display_on)
+				echo '<div class="updated"><p><strong><i>ERROR: </i> Could not define WP_POST_REVISIONS which is currently defined as: ' . WP_POST_REVISIONS . '</strong></p><p>You can comment out the <pre> define( WP_POST_REVISIONS ) </pre> in your wp-config.php file to enable this plugin to control the revisions.</p></div>';	
+		}
+		
+		
+	}
 
+	
 
 
 
@@ -112,6 +160,14 @@ class Simple_Optimizer_Plugin{
 			)
 		);
 
+						
+		//if(!defined('WP_POST_REVISIONS')){
+			$settings_sections[] = array(
+				'id' => 'revision_settings',
+				'title' => __( 'Revision Management', $this->plugin_name )
+			);
+		//}
+						
 								
         return $settings_sections;
     }
@@ -239,6 +295,54 @@ class Simple_Optimizer_Plugin{
                 )
 			)
 		);
+		
+
+		
+		
+		//if(!defined('WP_POST_REVISIONS')){
+			
+			$settings_fields['revision_settings'] = array(
+			
+				array(
+					'name' 		=> 'revision_management',
+					'label' 		=> __( 'Revision Management', $this->plugin_name ),
+					'desc' 		=> '<br>Configure How Many Page/Post Revisions To Save<br>(If you choose not to save any revisions, you will still need to delete them manually.)',
+					'type' 		=> 'radio',
+					'default' 	=> 'enabled',
+					'options' 	=> array(
+						'true' 			=> 'Save All Revisions <br> &nbsp; &nbsp; <span class="description">(Default)</span>',
+						'count' 			=> 'Save Some Revisions<br> &nbsp; &nbsp; <span class="description">(When you update a post/page it will remove old extra revisions)</span>',
+						'0'	 				=> 'Do Not Save Any Revisions<br> &nbsp; &nbsp; <span class="description">(Stop Saving Revisions, Does not delete old revisions.)</span>'
+					)
+				)
+				
+			);
+			
+			
+			
+					
+			if($this->opt['revision_settings']['revision_management'] == 'count'){
+				
+				$select = range(0, 100);
+				unset($select[0]);
+				
+				$settings_fields['revision_settings'][] = array(
+					'name' => 'revision_save_number',
+					'label' => __( 'Revision Count', $this->plugin_name ),
+					'desc' => 'Configure how many revisions to save',
+					'type' => 'select',
+					'default' => "10",
+					'options' => $select
+				);
+			}
+			
+			
+			
+	//	}
+		
+
+		
+		
 		
         return $settings_fields;
     }
@@ -497,6 +601,23 @@ class Simple_Optimizer_Plugin{
 			
 		}
 		
+		/**
+		if(defined('WP_POST_REVISIONS')){
+			
+			$revision_management = array(
+				'id' => 'revision_management_error',
+				'title' => __( 'Revision Management', $this->plugin_name ),
+				'callback' => array(&$this, 'show_revisions_error_tab')
+			);
+			$this->settings_page->add_section( $revision_management );
+			
+		}
+		**/
+		
+		
+		//echo "<div class='updated'>post revisions: " . WP_POST_REVISIONS . "</div>";
+		
+		
 		$plugin_tutorial = array(
 			'id' => 'plugin_tutorial',
 			'title' => __( 'Tutorial Video', $this->plugin_name ),
@@ -515,7 +636,17 @@ class Simple_Optimizer_Plugin{
 	}
 	
 
- 
+
+
+/**
+	public function show_revisions_error_tab(){
+		
+		echo "<p>NOTICE:<br>Revision Management will not function properly because the WP_POST_REVISIONS constant is already defined.<br>Please remove the definition for WP_POST_REVISIONS which is most likely in your wp-config.php file for the Revision Management System to work properly.</p>";
+		
+		
+		
+	}
+ **/
  
  
  	

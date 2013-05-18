@@ -78,16 +78,16 @@ class Simple_Optimizer_Tools{
 		
 		$optimization_queries = array(
 			
-			'delete_revisions' 				=> "DELETE FROM $wpdb->posts WHERE post_type = 'revision'",
-			'delete_auto_drafts' 			=> "DELETE FROM $wpdb->posts WHERE post_status = 'auto-draft'",
+			'delete_revisions' 						=> "DELETE FROM $wpdb->posts WHERE post_type = 'revision'",
+			'delete_auto_drafts' 					=> "DELETE FROM $wpdb->posts WHERE post_status = 'auto-draft'",
 			
-			'delete_pingbacks' 				=> "DELETE FROM $wpdb->comments WHERE comment_type = 'pingback'",
+			'delete_pingbacks' 						=> "DELETE FROM $wpdb->comments WHERE comment_type = 'pingback'",
 			'delete_spam_comments' 			=> "DELETE FROM $wpdb->comments WHERE comment_approved = 'spam'",
 			'delete_unapproved_comments' 	=> "DELETE FROM $wpdb->comments WHERE comment_approved = '0'",
 			
-			'delete_transient_options' 		=> "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%' OR option_name LIKE '_site_transient_%'",
-			'delete_unused_postmeta' 		=> "DELETE pm FROM  $wpdb->postmeta  pm LEFT JOIN  $wpdb->posts  wp ON wp.ID = pm.post_id WHERE wp.ID IS NULL",
-			'delete_unused_tags' 			=> "DELETE t,tt FROM  $wpdb->terms t INNER JOIN $wpdb->term_taxonomy tt ON t.term_id=tt.term_id WHERE tt.taxonomy='post_tag' AND tt.count=0"
+			'delete_transient_options' 			=> "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%' OR option_name LIKE '_site_transient_%'",
+			'delete_unused_postmeta' 			=> "DELETE pm FROM  $wpdb->postmeta  pm LEFT JOIN  $wpdb->posts  wp ON wp.ID = pm.post_id WHERE wp.ID IS NULL",
+			'delete_unused_tags' 					=> "DELETE t,tt FROM  $wpdb->terms t INNER JOIN $wpdb->term_taxonomy tt ON t.term_id=tt.term_id WHERE tt.taxonomy='post_tag' AND tt.count=0"
 			
 		);
 		
